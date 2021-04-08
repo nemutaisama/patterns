@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  nginx:
+    build: containers/nginx
+    volumes:
+      - .:/var/www/patterns
+    ports:
+      - 80:80
+    command: nginx -g 'daemon off;'
+    depends_on:
+      - php
+
+  postgres:
+    image: postgres:12
+    ports:
+      - 5434:5432
+    volumes:
+      - ./data/db/postgres:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    command: postgres
+
+  php:
+    image: registry.gitlab.com/nemutaisama-docker/php
+    volumes:
+      - .:/var/www/patterns
+    depends_on:
+      - postgres
+

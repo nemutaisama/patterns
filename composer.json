@@ -1,0 +1,15 @@
+{
+    "name": "nemutaisama/patterns",
+    "authors": [
+        {
+            "name": "Andrey Ageev",
+            "email": "nemutaisama@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Patterns\\": "src/"
+        }
+    }
+}
