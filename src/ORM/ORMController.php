@@ -2,13 +2,21 @@
 
 namespace Patterns\ORM;
 
+use Patterns\ORM\QueryBuilder\AbstractQueryBuilder;
+
 class ORMController
 {
+    private AbstractQueryBuilder $qb;
+
+    public function __construct(
+        AbstractQueryBuilder $queryBuilder
+    ) {
+        $this->qb = $queryBuilder;
+    }
 
     public function render()
     {
-        $queryBuilder = ServiceRegistry::getInstance()->getQueryBuilder();
-        $queryBuilder
+        $this->qb
             ->select('test, field')
             ->from('sometable')
             ->where('field2', '234')
@@ -16,6 +24,6 @@ class ORMController
         ;
 
 
-        echo $queryBuilder->runQuery();
+        echo $this->qb->runQuery();
     }
 }

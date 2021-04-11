@@ -18,6 +18,6 @@ class MysqlFactory extends AbstractFactory
 
     public function getQueryBuilder(): AbstractQueryBuilder
     {
-        return new MysqlQueryBuilder();
+        return new MysqlQueryBuilder($this->getDBConnect());
     }
 }

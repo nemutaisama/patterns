@@ -2,10 +2,18 @@
 
 namespace Patterns\ORM\QueryBuilder;
 
-use Patterns\ORM\ServiceRegistry;
+use Patterns\ORM\DBConnect\AbstractDBConnect;
 
 abstract class AbstractQueryBuilder
 {
+    private AbstractDBConnect $dbConnect;
+
+    public function __construct(
+        AbstractDBConnect $DBConnect
+    )
+    {
+        $this->dbConnect = $DBConnect;
+    }
     protected string $query = '';
 
     abstract public function select(string $fields): self;
@@ -15,7 +23,6 @@ abstract class AbstractQueryBuilder
 
     public function runQuery() : string
     {
-        $connect = ServiceRegistry::getInstance()->getDBConnect();
-        return $connect->execute($this->query);
+        return $this->dbConnect->execute($this->query);
     }
 }

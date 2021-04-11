@@ -6,7 +6,7 @@ require_once '../vendor/autoload.php';
 
 //load config
 $config = [
-    'db' => 'mysql',
+    'db' => 'postgres',
 ];
 
 //configure services

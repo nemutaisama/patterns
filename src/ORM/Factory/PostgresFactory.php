@@ -18,6 +18,6 @@ class PostgresFactory extends AbstractFactory
 
     public function getQueryBuilder(): AbstractQueryBuilder
     {
-        return new PostresQueryBuilder();
+        return new PostresQueryBuilder($this->getDBConnect());
     }
 }
